@@ -10,13 +10,12 @@ module.exports = async client => {
             var villageOutput = guild.channels.cache.find(x => x.id === process.env.OUTPUT_VILLAGE)
             var allianceOutput = guild.channels.cache.find(x => x.id === process.env.OUTPUT_ALLIANCE)
             var village = message.author.tag.slice(0, -5)
-
+            var msg = message.content.slice(12 + village.length)
             if (txt.startsWith('<village>')) {
                 if (process.env.USE_EMBEDS == 'true') {
-                    var msg = message.content.slice(12 + village.length)
+                    
                     let messageEmbed = new EmbedBuilder()
                         .setColor('#00cc66')
-                        .setTimestamp(new Date())
                         .addFields(
                             {
                                 name: `${message.author.tag.slice(0, -5)}`,
@@ -24,7 +23,7 @@ module.exports = async client => {
                             });
                     villageOutput.send({ embeds: [messageEmbed] });
                 } else {
-                    villageOutput.send({ content: message.content })
+                    villageOutput.send({ content: msg })
                 }
             }
             if (txt.startsWith('<alliance>')) {
@@ -32,7 +31,6 @@ module.exports = async client => {
                     var msg = message.content.slice(13)
                     let messageEmbed = new EmbedBuilder()
                         .setColor('#00cc66')
-                        .setTimestamp(new Date())
                         .addFields(
                             {
                                 name: `${message.author.tag.slice(0, -5)}`,
