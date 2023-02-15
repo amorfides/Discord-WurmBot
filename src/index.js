@@ -16,7 +16,7 @@ const client = new Client({
 
 client.login(TOKEN);
 
-// console.log(`${logTime()} # COMMANDS:`);
+// console.log(`# COMMANDS:`);
 
 // client.commands = new Collection();
 // const commandsPath = path.join(process.cwd(), 'src/commands');
@@ -24,7 +24,7 @@ client.login(TOKEN);
 // for (let file of commandFiles) {
 // 	const filePath = path.join(commandsPath, file);
 // 	const command = require(filePath);
-//   console.log(`${logTime()} ( / )Loaded ${file}`)
+//   console.log(`( / )Loaded ${file}`)
 // 	client.commands.set(command.data.name, command);
 // }
 
@@ -34,18 +34,18 @@ client.login(TOKEN);
 // for (let file of contextCommandFiles) {
 // 	const filePath = path.join(contextCommandsPath, file);
 // 	const contextCommand = require(filePath);
-//   console.log(`${logTime()} ( C )Loaded ${file}`)
+//   console.log(`( C )Loaded ${file}`)
 // 	client.contextCommands.set(contextCommand.data.name, contextCommand);
 // }
 
 
-console.log(`${logTime()} # EVENTS:`);
+console.log(`# EVENTS:`);
 const eventsPath = path.join(__dirname, 'events');
 const eventFiles = fs.readdirSync(eventsPath).filter(file => file.endsWith('.js'));
 for (const file of eventFiles) {
 	const filePath = path.join(eventsPath, file);
 	const event = require(filePath);
-  console.log(`${logTime()} Loaded ${file}`)
+  console.log(`Loaded ${file}`)
 	if (event.once) {
 		client.once(event.name, (...args) => event.execute(...args));
 	} else {
