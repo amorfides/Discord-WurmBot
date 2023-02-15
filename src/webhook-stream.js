@@ -36,7 +36,7 @@ module.exports = async client => {
                             });
                     allianceOutput.send({ embeds: [messageEmbed] });
                 } else {
-                    allianceOutput.send({ content: message.content })
+                    allianceOutput.send({ content: msg })
                 }
             }
         }
