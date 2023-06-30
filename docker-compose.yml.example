@@ -1,0 +1,30 @@
+version: "3.2"
+
+networks:
+  discord-wurmbot:
+    driver: bridge
+  traefik:
+    external: true
+
+services:
+
+  server:
+    build:
+      context: server
+      dockerfile: Dockerfile
+    networks:
+      - discord-wurmbot
+      - traefik
+    expose:
+      - 80
+      - 443
+    labels:
+       - "traefik.enable=true"
+       - "traefik.http.routers.BOT.entrypoints=websecure"
+       - "traefik.http.routers.BOT.tls.certresolver=letsencryptresolver"
+       - "traefik.http.routers.BOT.rule=host(`URL`)"
+    restart: always
+
+
+
+

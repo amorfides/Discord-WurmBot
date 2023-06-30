@@ -63,3 +63,5 @@ typings/
 #config file
 config.js
 package-lock.json
+.env
+docker-compose.yml
